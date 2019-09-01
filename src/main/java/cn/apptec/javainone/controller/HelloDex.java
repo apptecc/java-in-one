@@ -1,6 +1,5 @@
 package cn.apptec.javainone.controller;
 
-import cn.apptec.javainone.config.ApptecConfig;
 import com.google.common.base.Splitter;
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.factory.annotation.Autowired;
