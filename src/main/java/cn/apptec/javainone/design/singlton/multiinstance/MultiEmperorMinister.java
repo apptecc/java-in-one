@@ -1,4 +1,4 @@
-package cn.apptec.javainone.design.simple.multiinstance;
+package cn.apptec.javainone.design.singlton.multiinstance;
 
 import java.util.stream.IntStream;
 

@@ -1,4 +1,4 @@
-package cn.apptec.javainone.design.simple;
+package cn.apptec.javainone.design.singleton;
 
 /**
  *

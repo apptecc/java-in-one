@@ -1,8 +1,8 @@
-package cn.apptec.javainone.design.simple;
+package cn.apptec.javainone.design.singleton;
 
 import java.util.stream.IntStream;
 
-import static cn.apptec.javainone.design.simple.Emperor.*;
+import static cn.apptec.javainone.design.singleton.Emperor.*;
 
 /**
  *
