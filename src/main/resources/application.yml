@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  project:
+    name: xszt-001
+  application:
+    name: yh-sod-product-sync
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://10.251.77.113:3306/yh_sod_product_center_dev?autoReconnect=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+      username: read_only
+      password: read_only123
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: cn.apptec.javainone.sod.productcenter.entity
+  global-config:
+    # 数据库相关配置
+    db-config:
+      # 主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      # 字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: NOT_NULL
+      # 驼峰下划线转换
+      column-underline: true
+      # 刷新mapper 调试神器
+      refresh-mapper: true
+      # 数据库大写下划线转换
+      #capital-mode: true
+      # 逻辑删除配置
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+    banner: false
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+

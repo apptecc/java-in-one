@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.apptec.javainone.sod.productcenter.dao.ProductOnlineDao">
+
+    <resultMap type="cn.apptec.javainone.sod.productcenter.entity.ProductOnline" id="ProductOnlineMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="transformType" column="transform_type" jdbcType="OTHER"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="productCode" column="product_code" jdbcType="VARCHAR"/>
+        <result property="upcCode" column="upc_code" jdbcType="VARCHAR"/>
+        <result property="productSpecific" column="product_specific" jdbcType="VARCHAR"/>
+        <result property="productUnit" column="product_unit" jdbcType="VARCHAR"/>
+        <result property="exclusiveChannelCode" column="exclusive_channel_code" jdbcType="VARCHAR"/>
+        <result property="originPlace" column="origin_place" jdbcType="VARCHAR"/>
+        <result property="shelfLife" column="shelf_life" jdbcType="VARCHAR"/>
+        <result property="storageType" column="storage_type" jdbcType="VARCHAR"/>
+        <result property="productBrief" column="product_brief" jdbcType="VARCHAR"/>
+        <result property="isValid" column="is_valid" jdbcType="OTHER"/>
+        <result property="brandCode" column="brand_code" jdbcType="VARCHAR"/>
+        <result property="brandName" column="brand_name" jdbcType="VARCHAR"/>
+        <result property="sapProductHash" column="sap_product_hash" jdbcType="VARCHAR"/>
+        <result property="productPrice" column="product_price" jdbcType="INTEGER"/>
+        <result property="offlineLargeClassBelongTo" column="offline_large_class_belong_to" jdbcType="VARCHAR"/>
+        <result property="offlineMiddleClassBelongTo" column="offline_middle_class_belong_to" jdbcType="VARCHAR"/>
+        <result property="offlineSmallClassBelongTo" column="offline_small_class_belong_to" jdbcType="VARCHAR"/>
+        <result property="weight" column="weight" jdbcType="NUMERIC"/>
+        <result property="length" column="length" jdbcType="INTEGER"/>
+        <result property="width" column="width" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="INTEGER"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="is_delete" jdbcType="OTHER"/>
+        <result property="isReturn" column="is_return" jdbcType="OTHER"/>
+        <result property="isTop" column="is_top" jdbcType="OTHER"/>
+        <result property="isWeightReturnPrice" column="is_weight_return_price" jdbcType="OTHER"/>
+        <result property="subTitle" column="sub_title" jdbcType="VARCHAR"/>
+        <result property="keywords" column="keywords" jdbcType="VARCHAR"/>
+        <result property="isFresh" column="is_fresh" jdbcType="OTHER"/>
+        <result property="offlineRootClassBelongTo" column="offline_root_class_belong_to" jdbcType="VARCHAR"/>
+        <result property="purchaseGroupCode" column="purchase_group_code" jdbcType="VARCHAR"/>
+        <result property="canAdjustPrice" column="can_adjust_price" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductOnlineMap">
+        select
+          id, transform_type, product_name, product_code, upc_code, product_specific, product_unit, exclusive_channel_code, origin_place, shelf_life, storage_type, product_brief, is_valid, brand_code, brand_name, sap_product_hash, product_price, offline_large_class_belong_to, offline_middle_class_belong_to, offline_small_class_belong_to, weight, length, width, height, created_time, created_by, updated_time, updated_by, is_delete, is_return, is_top, is_weight_return_price, sub_title, keywords, is_fresh, offline_root_class_belong_to, purchase_group_code, can_adjust_price
+        from yh_sod_productcenter.product_online
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductOnlineMap">
+        select
+          id, transform_type, product_name, product_code, upc_code, product_specific, product_unit, exclusive_channel_code, origin_place, shelf_life, storage_type, product_brief, is_valid, brand_code, brand_name, sap_product_hash, product_price, offline_large_class_belong_to, offline_middle_class_belong_to, offline_small_class_belong_to, weight, length, width, height, created_time, created_by, updated_time, updated_by, is_delete, is_return, is_top, is_weight_return_price, sub_title, keywords, is_fresh, offline_root_class_belong_to, purchase_group_code, can_adjust_price
+        from yh_sod_productcenter.product_online
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProductOnlineMap">
+        select
+          id, transform_type, product_name, product_code, upc_code, product_specific, product_unit, exclusive_channel_code, origin_place, shelf_life, storage_type, product_brief, is_valid, brand_code, brand_name, sap_product_hash, product_price, offline_large_class_belong_to, offline_middle_class_belong_to, offline_small_class_belong_to, weight, length, width, height, created_time, created_by, updated_time, updated_by, is_delete, is_return, is_top, is_weight_return_price, sub_title, keywords, is_fresh, offline_root_class_belong_to, purchase_group_code, can_adjust_price
+        from yh_sod_productcenter.product_online
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="transformType != null">
+                and transform_type = #{transformType}
+            </if>
+            <if test="productName != null and productName != ''">
+                and product_name = #{productName}
+            </if>
+            <if test="productCode != null and productCode != ''">
+                and product_code = #{productCode}
+            </if>
+            <if test="upcCode != null and upcCode != ''">
+                and upc_code = #{upcCode}
+            </if>
+            <if test="productSpecific != null and productSpecific != ''">
+                and product_specific = #{productSpecific}
+            </if>
+            <if test="productUnit != null and productUnit != ''">
+                and product_unit = #{productUnit}
+            </if>
+            <if test="exclusiveChannelCode != null and exclusiveChannelCode != ''">
+                and exclusive_channel_code = #{exclusiveChannelCode}
+            </if>
+            <if test="originPlace != null and originPlace != ''">
+                and origin_place = #{originPlace}
+            </if>
+            <if test="shelfLife != null and shelfLife != ''">
+                and shelf_life = #{shelfLife}
+            </if>
+            <if test="storageType != null and storageType != ''">
+                and storage_type = #{storageType}
+            </if>
+            <if test="productBrief != null and productBrief != ''">
+                and product_brief = #{productBrief}
+            </if>
+            <if test="isValid != null">
+                and is_valid = #{isValid}
+            </if>
+            <if test="brandCode != null and brandCode != ''">
+                and brand_code = #{brandCode}
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name = #{brandName}
+            </if>
+            <if test="sapProductHash != null and sapProductHash != ''">
+                and sap_product_hash = #{sapProductHash}
+            </if>
+            <if test="productPrice != null">
+                and product_price = #{productPrice}
+            </if>
+            <if test="offlineLargeClassBelongTo != null and offlineLargeClassBelongTo != ''">
+                and offline_large_class_belong_to = #{offlineLargeClassBelongTo}
+            </if>
+            <if test="offlineMiddleClassBelongTo != null and offlineMiddleClassBelongTo != ''">
+                and offline_middle_class_belong_to = #{offlineMiddleClassBelongTo}
+            </if>
+            <if test="offlineSmallClassBelongTo != null and offlineSmallClassBelongTo != ''">
+                and offline_small_class_belong_to = #{offlineSmallClassBelongTo}
+            </if>
+            <if test="weight != null">
+                and weight = #{weight}
+            </if>
+            <if test="length != null">
+                and length = #{length}
+            </if>
+            <if test="width != null">
+                and width = #{width}
+            </if>
+            <if test="height != null">
+                and height = #{height}
+            </if>
+            <if test="createdTime != null">
+                and created_time = #{createdTime}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="updatedTime != null">
+                and updated_time = #{updatedTime}
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                and updated_by = #{updatedBy}
+            </if>
+            <if test="isDelete != null">
+                and is_delete = #{isDelete}
+            </if>
+            <if test="isReturn != null">
+                and is_return = #{isReturn}
+            </if>
+            <if test="isTop != null">
+                and is_top = #{isTop}
+            </if>
+            <if test="isWeightReturnPrice != null">
+                and is_weight_return_price = #{isWeightReturnPrice}
+            </if>
+            <if test="subTitle != null and subTitle != ''">
+                and sub_title = #{subTitle}
+            </if>
+            <if test="keywords != null and keywords != ''">
+                and keywords = #{keywords}
+            </if>
+            <if test="isFresh != null">
+                and is_fresh = #{isFresh}
+            </if>
+            <if test="offlineRootClassBelongTo != null and offlineRootClassBelongTo != ''">
+                and offline_root_class_belong_to = #{offlineRootClassBelongTo}
+            </if>
+            <if test="purchaseGroupCode != null and purchaseGroupCode != ''">
+                and purchase_group_code = #{purchaseGroupCode}
+            </if>
+            <if test="canAdjustPrice != null">
+                and can_adjust_price = #{canAdjustPrice}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into yh_sod_productcenter.product_online(transform_type, product_name, product_code, upc_code, product_specific, product_unit, exclusive_channel_code, origin_place, shelf_life, storage_type, product_brief, is_valid, brand_code, brand_name, sap_product_hash, product_price, offline_large_class_belong_to, offline_middle_class_belong_to, offline_small_class_belong_to, weight, length, width, height, created_time, created_by, updated_time, updated_by, is_delete, is_return, is_top, is_weight_return_price, sub_title, keywords, is_fresh, offline_root_class_belong_to, purchase_group_code, can_adjust_price)
+        values (#{transformType}, #{productName}, #{productCode}, #{upcCode}, #{productSpecific}, #{productUnit}, #{exclusiveChannelCode}, #{originPlace}, #{shelfLife}, #{storageType}, #{productBrief}, #{isValid}, #{brandCode}, #{brandName}, #{sapProductHash}, #{productPrice}, #{offlineLargeClassBelongTo}, #{offlineMiddleClassBelongTo}, #{offlineSmallClassBelongTo}, #{weight}, #{length}, #{width}, #{height}, #{createdTime}, #{createdBy}, #{updatedTime}, #{updatedBy}, #{isDelete}, #{isReturn}, #{isTop}, #{isWeightReturnPrice}, #{subTitle}, #{keywords}, #{isFresh}, #{offlineRootClassBelongTo}, #{purchaseGroupCode}, #{canAdjustPrice})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update yh_sod_productcenter.product_online
+        <set>
+            <if test="transformType != null">
+                transform_type = #{transformType},
+            </if>
+            <if test="productName != null and productName != ''">
+                product_name = #{productName},
+            </if>
+            <if test="productCode != null and productCode != ''">
+                product_code = #{productCode},
+            </if>
+            <if test="upcCode != null and upcCode != ''">
+                upc_code = #{upcCode},
+            </if>
+            <if test="productSpecific != null and productSpecific != ''">
+                product_specific = #{productSpecific},
+            </if>
+            <if test="productUnit != null and productUnit != ''">
+                product_unit = #{productUnit},
+            </if>
+            <if test="exclusiveChannelCode != null and exclusiveChannelCode != ''">
+                exclusive_channel_code = #{exclusiveChannelCode},
+            </if>
+            <if test="originPlace != null and originPlace != ''">
+                origin_place = #{originPlace},
+            </if>
+            <if test="shelfLife != null and shelfLife != ''">
+                shelf_life = #{shelfLife},
+            </if>
+            <if test="storageType != null and storageType != ''">
+                storage_type = #{storageType},
+            </if>
+            <if test="productBrief != null and productBrief != ''">
+                product_brief = #{productBrief},
+            </if>
+            <if test="isValid != null">
+                is_valid = #{isValid},
+            </if>
+            <if test="brandCode != null and brandCode != ''">
+                brand_code = #{brandCode},
+            </if>
+            <if test="brandName != null and brandName != ''">
+                brand_name = #{brandName},
+            </if>
+            <if test="sapProductHash != null and sapProductHash != ''">
+                sap_product_hash = #{sapProductHash},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice},
+            </if>
+            <if test="offlineLargeClassBelongTo != null and offlineLargeClassBelongTo != ''">
+                offline_large_class_belong_to = #{offlineLargeClassBelongTo},
+            </if>
+            <if test="offlineMiddleClassBelongTo != null and offlineMiddleClassBelongTo != ''">
+                offline_middle_class_belong_to = #{offlineMiddleClassBelongTo},
+            </if>
+            <if test="offlineSmallClassBelongTo != null and offlineSmallClassBelongTo != ''">
+                offline_small_class_belong_to = #{offlineSmallClassBelongTo},
+            </if>
+            <if test="weight != null">
+                weight = #{weight},
+            </if>
+            <if test="length != null">
+                length = #{length},
+            </if>
+            <if test="width != null">
+                width = #{width},
+            </if>
+            <if test="height != null">
+                height = #{height},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by = #{updatedBy},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+            <if test="isReturn != null">
+                is_return = #{isReturn},
+            </if>
+            <if test="isTop != null">
+                is_top = #{isTop},
+            </if>
+            <if test="isWeightReturnPrice != null">
+                is_weight_return_price = #{isWeightReturnPrice},
+            </if>
+            <if test="subTitle != null and subTitle != ''">
+                sub_title = #{subTitle},
+            </if>
+            <if test="keywords != null and keywords != ''">
+                keywords = #{keywords},
+            </if>
+            <if test="isFresh != null">
+                is_fresh = #{isFresh},
+            </if>
+            <if test="offlineRootClassBelongTo != null and offlineRootClassBelongTo != ''">
+                offline_root_class_belong_to = #{offlineRootClassBelongTo},
+            </if>
+            <if test="purchaseGroupCode != null and purchaseGroupCode != ''">
+                purchase_group_code = #{purchaseGroupCode},
+            </if>
+            <if test="canAdjustPrice != null">
+                can_adjust_price = #{canAdjustPrice},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from yh_sod_productcenter.product_online where id = #{id}
+    </delete>
+
+</mapper>

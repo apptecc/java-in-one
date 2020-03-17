@@ -1,0 +1,27 @@
+@startuml
+title sap下发商品对接
+sap -> productcenter: 下发商品数据
+productcenter --> productcenter: 处理下发数据并通知到各业务中心
+@enduml
+
+@startuml
+header 处理下发数据逻辑
+title 处理下发数据逻辑
+database mid_base_product_info
+database base_product_info_sap
+
+sap -> mid_base_product_info
+BaseProductInfoSapJob -> mid_base_product_info: 分批获取sap下发数据
+BaseProductInfoSapJob -> BaseProductInfoServiceImpl: 处理下发数据逻辑
+BaseProductInfoServiceImpl -> BaseProductInfoServiceImpl: 根据商品编号分组, 取最后一条
+BaseProductInfoServiceImpl -> BaseProductInfoServiceImpl: 销项税率
+note right: /categoryAttribute/findList
+BaseProductInfoServiceImpl -> base_product_info_sap: 入表
+BaseProductInfoServiceImpl -> mid_base_product_info: 更新处理状态
+BaseProductInfoServiceImpl -> 云POS: mq同步数据
+BaseProductInfoServiceImpl -> 统一推送中台云创: mq同步数据
+note right: 本次改动点
+BaseProductInfoServiceImpl -> MQ: 同步商品主数据信息发送虚拟编号
+
+
+@enduml
