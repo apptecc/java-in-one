@@ -74,6 +74,7 @@ public class ProductOnlineServiceImpl implements ProductOnlineService {
      */
     @Override
     public boolean deleteById(Long id) {
+
         return this.productOnlineDao.deleteById(id) > 0;
     }
 }

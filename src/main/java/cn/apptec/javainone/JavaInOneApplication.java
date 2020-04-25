@@ -8,8 +8,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("cn.apptec.javainone.sod.productcenter.dao")
 public class JavaInOneApplication {
 
+
+
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(JavaInOneApplication.class, args);
     }
+
+    static void hello() {
+
+    }
+
+
+
+
+
 
 }
